@@ -9,7 +9,8 @@ var theta: float = 0.0;
 
 func _process(dt):
 	if health <= 0.0:
-		queue_free(); #PLACEHOLDER
+		queue_free();
+		get_tree().change_scene_to_file("res://scn/ui/win_screen.tscn")
 
 func get_vector(angle):
 	theta = angle + alpha;

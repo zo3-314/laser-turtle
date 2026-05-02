@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Turtle Game"
-run/main_scene="uid://c6q014j2fx7rh"
+run/main_scene="uid://dlooxcotqg8hm"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

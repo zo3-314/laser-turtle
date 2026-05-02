@@ -14,8 +14,4 @@ func _process(delta: float) -> void:
 		if $"../Player".health <= 0.0:
 			$Heart1.hide()
 	else:
-		$Heart5.hide()
-		$Heart4.hide()
-		$Heart3.hide()
-		$Heart2.hide()
-		$Heart1.hide()
+		get_tree().change_scene_to_file("res://scn/ui/loss_screen.tscn")

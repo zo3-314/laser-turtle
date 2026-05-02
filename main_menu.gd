@@ -11,7 +11,6 @@ func _process(_delta: float) -> void:
 	#get_tree().change_scene_to_file("")
 	pass
 
-
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://scn/main_game.tscn")
 
@@ -20,4 +19,6 @@ func _on_instructions_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
-	
+
+func _on_timer_timeout() -> void:
+	$Button_manager/TextureRect2.hide();

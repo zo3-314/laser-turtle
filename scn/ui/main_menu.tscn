@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dlooxcotqg8hm"]
 
 [ext_resource type="Script" uid="uid://c53q3vvicqjf3" path="res://main_menu.gd" id="1_7slde"]
-[ext_resource type="Texture2D" uid="uid://dlj2xyu14knum" path="res://Instructions_-removebg-preview (1).png" id="2_amgwv"]
+[ext_resource type="Texture2D" uid="uid://bnrx2rgn1anp7" path="res://Instructions .png" id="2_dv6jm"]
+[ext_resource type="Texture2D" uid="uid://c4ti62ghliulo" path="res://game poster thingy .png" id="3_dv6jm"]
+[ext_resource type="AudioStream" uid="uid://cqu6n4buy1sfc" path="res://Sneaky Snitch.mp3" id="4_ybber"]
 
 [sub_resource type="Theme" id="Theme_rd2v0"]
 
@@ -16,6 +18,9 @@ bg_color = Color(0.79061896, 0.64274967, 0.92819715, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amgwv"]
 bg_color = Color(0.9437215, 0.6086756, 0.6385121, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ybber"]
+diffuse_texture = ExtResource("2_dv6jm")
 
 [node name="Main Menu" type="Node2D" unique_id=371575096]
 script = ExtResource("1_7slde")
@@ -60,8 +65,6 @@ theme_override_font_sizes/font_size = 37
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7slde")
 text = "Instructions"
 
-[node name="Node2D" type="Node2D" parent="Button_manager/Instructions" unique_id=1539833256]
-
 [node name="Quit" type="Button" parent="Button_manager" unique_id=741270751]
 layout_mode = 0
 offset_left = 340.0
@@ -76,18 +79,45 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_amgwv")
 text = "Quit"
 
 [node name="TextureRect" type="TextureRect" parent="Button_manager" unique_id=364679108]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 109.0
-offset_top = 22.0
-offset_right = 860.2692
-offset_bottom = 501.0
+offset_left = -15.0
+offset_top = -12.0
+offset_right = 985.0
+offset_bottom = 551.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_amgwv")
+mouse_filter = 2
+texture = SubResource("CanvasTexture_ybber")
+
+[node name="TextureRect2" type="TextureRect" parent="Button_manager" unique_id=1018115880]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 970.0
+offset_bottom = 543.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_dv6jm")
+
+[node name="Timer" type="Timer" parent="Button_manager" unique_id=1619823091]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Button_manager" unique_id=1929797443]
+stream = ExtResource("4_ybber")
+volume_db = 15.795
+autoplay = true
 
 [connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Button_manager/Instructions" to="." method="_on_instructions_pressed"]
 [connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="Button_manager/Timer" to="." method="_on_timer_timeout"]
