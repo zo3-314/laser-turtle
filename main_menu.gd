@@ -7,17 +7,16 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	get_tree().change_scene_to_file("")
+func _process(_delta: float) -> void:
+	#get_tree().change_scene_to_file("")
+	pass
 
 
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://scn/main_game.tscn")
 
-
 func _on_instructions_pressed():
-	get_tree().change_scene_to_file("res://instructions.tscn")
-
+	$Button_manager/TextureRect.visible = true
 
 func _on_quit_pressed():
 	get_tree().quit()
