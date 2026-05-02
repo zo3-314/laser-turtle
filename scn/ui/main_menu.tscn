@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlooxcotqg8hm"]
 
 [ext_resource type="Script" uid="uid://c53q3vvicqjf3" path="res://main_menu.gd" id="1_7slde"]
+[ext_resource type="Texture2D" uid="uid://cpb4jirsu1kv7" path="res://img/background/UntitledArtwork2(7).png" id="2_3bcgp"]
 [ext_resource type="Texture2D" uid="uid://bnrx2rgn1anp7" path="res://Instructions .png" id="2_dv6jm"]
 [ext_resource type="Texture2D" uid="uid://c4ti62ghliulo" path="res://game poster thingy .png" id="3_dv6jm"]
 [ext_resource type="AudioStream" uid="uid://cqu6n4buy1sfc" path="res://Sneaky Snitch.mp3" id="4_ybber"]
@@ -34,6 +35,20 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TextureRect3" type="TextureRect" parent="Button_manager" unique_id=942264529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -2.0
+offset_right = 949.3712
+offset_bottom = 537.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_3bcgp")
 
 [node name="Start" type="Button" parent="Button_manager" unique_id=372724333]
 layout_mode = 1
