@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://codjvc8a7xqds"]
+
+[ext_resource type="Shader" uid="uid://clqn6hrruj70h" path="res://src/water_shader.gdshader" id="1_osygs"]
+[ext_resource type="Texture2D" uid="uid://7stsrxb0d5kg" path="res://icon.svg" id="2_u6yha"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qr5vb"]
+shader = ExtResource("1_osygs")
+
+[node name="WaterDistortion" type="Sprite2D" unique_id=514210085]
+material = SubResource("ShaderMaterial_qr5vb")
+texture = ExtResource("2_u6yha")

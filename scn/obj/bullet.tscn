@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cat2s8akau8jl"]
+
+[ext_resource type="Script" uid="uid://c8oyc58b82mop" path="res://src/bullet.gd" id="1_faoo7"]
+[ext_resource type="Texture2D" uid="uid://chj6x6cqg8jhi" path="res://img/bullet.png" id="2_faoo7"]
+[ext_resource type="Texture2D" uid="uid://dvvsvbr82s8us" path="res://img/bullet_blue.png" id="3_0w8m7"]
+[ext_resource type="Texture2D" uid="uid://bb0nl3285gt3c" path="res://img/bullet_green.png" id="4_i285h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5a3g"]
+size = Vector2(16, 16)
+
+[node name="Bullet" type="Area2D" unique_id=666130682]
+script = ExtResource("1_faoo7")
+texture_array = Array[Texture2D]([ExtResource("2_faoo7"), ExtResource("3_0w8m7"), ExtResource("4_i285h")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=32712660]
+self_modulate = Color(1.8247963, 1.8247963, 1.353256, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("2_faoo7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1997044026]
+shape = SubResource("RectangleShape2D_l5a3g")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=838215037]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

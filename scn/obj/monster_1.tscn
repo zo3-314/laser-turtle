@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://chkkcx2iju30y"]
+
+[ext_resource type="Texture2D" uid="uid://brehjkrq7udrb" path="res://img/monster1.png" id="1_04blv"]
+[ext_resource type="Script" uid="uid://chpbr641fdqme" path="res://src/monster_1.gd" id="1_js34q"]
+[ext_resource type="PackedScene" uid="uid://cat2s8akau8jl" path="res://scn/obj/bullet.tscn" id="2_c61ip"]
+[ext_resource type="Script" uid="uid://bji1ctxmbu3c" path="res://src/finite_state_machine.gd" id="4_0l0pk"]
+[ext_resource type="Script" uid="uid://cq8qt3ndhwror" path="res://src/5_leaf.gd" id="6_bqutv"]
+[ext_resource type="Script" uid="uid://k0o7hdq3jy36" path="res://src/4_leaf.gd" id="6_dr8bh"]
+[ext_resource type="Script" uid="uid://hkbrhj4ryhru" path="res://src/3_leaf.gd" id="7_2enw1"]
+[ext_resource type="Script" uid="uid://dicqw4rptwas6" path="res://src/2_leaf.gd" id="8_2enw1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_04blv"]
+size = Vector2(178, 180)
+
+[node name="Monster1" type="CharacterBody2D" unique_id=1931066941]
+script = ExtResource("1_js34q")
+bullet_node = ExtResource("2_c61ip")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=586734029]
+scale = Vector2(3, 3)
+texture = ExtResource("1_04blv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972043929]
+shape = SubResource("RectangleShape2D_04blv")
+
+[node name="Speed" type="Timer" parent="." unique_id=983368355]
+wait_time = 0.05
+autostart = true
+
+[node name="Duration" type="Timer" parent="." unique_id=604949178]
+autostart = true
+
+[node name="FiniteStateMachine" type="Node2D" parent="." unique_id=494957698]
+script = ExtResource("4_0l0pk")
+
+[node name="5Leaf" type="Node2D" parent="FiniteStateMachine" unique_id=819886054]
+script = ExtResource("6_bqutv")
+
+[node name="4Leaf" type="Node2D" parent="FiniteStateMachine" unique_id=1577285881]
+script = ExtResource("6_dr8bh")
+
+[node name="3Leaf" type="Node2D" parent="FiniteStateMachine" unique_id=1791380105]
+script = ExtResource("7_2enw1")
+
+[node name="2Leaf" type="Node2D" parent="FiniteStateMachine" unique_id=2082962634]
+script = ExtResource("8_2enw1")
+
+[connection signal="timeout" from="Speed" to="." method="_on_speed_timeout"]

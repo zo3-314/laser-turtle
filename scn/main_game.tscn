@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://c6q014j2fx7rh"]
 
+[ext_resource type="PackedScene" uid="uid://cucufbe7jeny" path="res://scn/obj/player.tscn" id="1_4b31p"]
+[ext_resource type="PackedScene" uid="uid://chkkcx2iju30y" path="res://scn/obj/monster_1.tscn" id="3_j75uj"]
+
+[sub_resource type="Environment" id="Environment_4b31p"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.5
+
 [node name="MainGame" type="Node2D" unique_id=889829084]
+
+[node name="Player" parent="." unique_id=1206753865 instance=ExtResource("1_4b31p")]
+position = Vector2(325, 249)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=586022267]
+position = Vector2(477, 274)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1815765782]
+environment = SubResource("Environment_4b31p")
+
+[node name="Monster1" parent="." unique_id=1931066941 instance=ExtResource("3_j75uj")]
+position = Vector2(777, 235)
