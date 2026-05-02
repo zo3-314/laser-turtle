@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://c6q014j2fx7rh"]
 
 [ext_resource type="PackedScene" uid="uid://cucufbe7jeny" path="res://scn/obj/player.tscn" id="1_4b31p"]
-[ext_resource type="Script" uid="uid://b1bvsmxxa8740" path="res://src/parallax_2d.gd" id="2_kffl6"]
+[ext_resource type="Script" path="res://src/parallax_2d.gd" id="2_kffl6"]
 [ext_resource type="PackedScene" uid="uid://chkkcx2iju30y" path="res://scn/obj/monster_1.tscn" id="3_j75uj"]
 [ext_resource type="Texture2D" uid="uid://5t4ij278imvf" path="res://img/background/Turtule.png" id="3_uastt"]
 [ext_resource type="Texture2D" uid="uid://olgkpfjn8dr4" path="res://img/background/Turtule(2).png" id="4_j2rit"]
 [ext_resource type="Texture2D" uid="uid://bci1myjvqxlxt" path="res://img/background/Turtule(1).png" id="4_m3k5h"]
 [ext_resource type="Texture2D" uid="uid://pr5vhts3poc7" path="res://img/background/Turtule(3).png" id="5_2vb60"]
 [ext_resource type="Texture2D" uid="uid://cshj4y0ythmjc" path="res://img/background/Turtule(4).png" id="6_nrbjp"]
-[ext_resource type="Script" uid="uid://bhowopqf601on" path="res://src/hearts.gd" id="9_nrbjp"]
+[ext_resource type="Script" path="res://src/hearts.gd" id="9_nrbjp"]
 [ext_resource type="Texture2D" uid="uid://c5qqdy25h7kx1" path="res://img/heart.png" id="10_b3xmv"]
 [ext_resource type="AudioStream" uid="uid://bsx32f6mhfkw8" path="res://sfx/new_song.wav" id="11_3633i"]
 
@@ -25,7 +25,7 @@ repeat_times = 2
 follow_viewport = false
 ignore_camera_scroll = true
 script = ExtResource("2_kffl6")
-parallax_rate = 50.0
+parallax_rate = 75.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="Parallax2D2" unique_id=1763979194]
 position = Vector2(0, 270)
@@ -38,7 +38,7 @@ repeat_times = 2
 follow_viewport = false
 ignore_camera_scroll = true
 script = ExtResource("2_kffl6")
-parallax_rate = 10.0
+parallax_rate = 80.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1113951251]
 position = Vector2(0, 270)
@@ -51,7 +51,7 @@ repeat_times = 2
 follow_viewport = false
 ignore_camera_scroll = true
 script = ExtResource("2_kffl6")
-parallax_rate = 20.0
+parallax_rate = 60.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=649626784]
 position = Vector2(0, 270)
@@ -64,7 +64,7 @@ repeat_times = 2
 follow_viewport = false
 ignore_camera_scroll = true
 script = ExtResource("2_kffl6")
-parallax_rate = 15.0
+parallax_rate = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D4" unique_id=1083292301]
 position = Vector2(0, 270)
@@ -77,7 +77,7 @@ repeat_times = 2
 follow_viewport = false
 ignore_camera_scroll = true
 script = ExtResource("2_kffl6")
-parallax_rate = 15.0
+parallax_rate = 30.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D5" unique_id=1454250483]
 position = Vector2(0, 270)
@@ -95,6 +95,7 @@ environment = SubResource("Environment_4b31p")
 
 [node name="Monster1" parent="." unique_id=1931066941 instance=ExtResource("3_j75uj")]
 position = Vector2(777, 235)
+health = 125.0
 
 [node name="UI" type="Control" parent="." unique_id=1258426833]
 layout_mode = 3
