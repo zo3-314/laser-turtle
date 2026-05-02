@@ -2,18 +2,122 @@
 
 [ext_resource type="Script" uid="uid://bo0a8sfkdwsgk" path="res://src/player.gd" id="1_tqff3"]
 [ext_resource type="Texture2D" uid="uid://g1hx0c6wekvr" path="res://img/player.png" id="2_tqff3"]
+[ext_resource type="Texture2D" uid="uid://durq8a6q2gahp" path="res://img/swim_down.png" id="3_du41x"]
+[ext_resource type="Texture2D" uid="uid://blk53ntcr8m8j" path="res://img/swim_up.png" id="4_rs5mv"]
+[ext_resource type="AudioStream" uid="uid://cecctsmqcb5tm" path="res://sfx/laserShoot.wav" id="5_rs5mv"]
+[ext_resource type="AudioStream" uid="uid://cil0vaefll6ka" path="res://sfx/hitHurt.wav" id="6_mjqy7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mjqy7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_tqff3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_du41x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tqff3")
+}],
+"loop": true,
+"name": &"swim_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rs5mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tqff3")
+}],
+"loop": true,
+"name": &"swim_up",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6fvc"]
 radius = 9.0
+
+[sub_resource type="Animation" id="Animation_cdxjl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_du41x"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4057575, 0.5970123, 0.79493093, 0.7964248, 0.9949309),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0.9882353), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.9882353)]
+}
+
+[sub_resource type="Animation" id="Animation_fbqr0"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.34901962, 0.3254902, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_du41x"]
+_data = {
+&"RESET": SubResource("Animation_cdxjl"),
+&"default": SubResource("Animation_du41x"),
+&"hit": SubResource("Animation_fbqr0")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1206753865 groups=["Player"]]
 script = ExtResource("1_tqff3")
 max_speed = 300.0
 accel = 0.5
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=991189047]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=682867581]
 scale = Vector2(3, 3)
-texture = ExtResource("2_tqff3")
+sprite_frames = SubResource("SpriteFrames_mjqy7")
+animation = &"idle"
+frame_progress = 0.13865775
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1377677042]
 rotation = 1.5707964
@@ -22,3 +126,15 @@ shape = SubResource("CapsuleShape2D_g6fvc")
 
 [node name="ShootPoint" type="Node2D" parent="." unique_id=159686640]
 position = Vector2(46, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1241806973]
+libraries/ = SubResource("AnimationLibrary_du41x")
+autoplay = &"default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1448660095]
+stream = ExtResource("5_rs5mv")
+volume_db = 6.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=1536474493]
+stream = ExtResource("6_mjqy7")
+volume_db = 8.0

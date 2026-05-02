@@ -4,21 +4,105 @@
 [ext_resource type="Script" uid="uid://chpbr641fdqme" path="res://src/monster_1.gd" id="1_js34q"]
 [ext_resource type="PackedScene" uid="uid://cat2s8akau8jl" path="res://scn/obj/bullet.tscn" id="2_c61ip"]
 [ext_resource type="Script" uid="uid://bji1ctxmbu3c" path="res://src/finite_state_machine.gd" id="4_0l0pk"]
+[ext_resource type="Texture2D" uid="uid://bi4rty8pgwpcb" path="res://img/monster_animation.png" id="4_cdxjl"]
 [ext_resource type="Script" uid="uid://cq8qt3ndhwror" path="res://src/5_leaf.gd" id="6_bqutv"]
 [ext_resource type="Script" uid="uid://k0o7hdq3jy36" path="res://src/4_leaf.gd" id="6_dr8bh"]
 [ext_resource type="Script" uid="uid://hkbrhj4ryhru" path="res://src/3_leaf.gd" id="7_2enw1"]
 [ext_resource type="Script" uid="uid://dicqw4rptwas6" path="res://src/2_leaf.gd" id="8_2enw1"]
+[ext_resource type="AudioStream" uid="uid://ylsnv7cr4rax" path="res://sfx/laserShoot(1).wav" id="10_maoh1"]
+[ext_resource type="AudioStream" uid="uid://d36ynfj4rkc5s" path="res://sfx/explosion(1).wav" id="11_fbqr0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_maoh1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_04blv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cdxjl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04blv"]
 size = Vector2(178, 180)
 
-[node name="Monster1" type="CharacterBody2D" unique_id=1931066941]
+[sub_resource type="Animation" id="Animation_cdxjl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_maoh1"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20105188, 0.40498966, 0.6041176, 0.8042075, 0.9994875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fbqr0"]
+resource_name = "hit"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.34901962, 0.3254902, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c84hp"]
+_data = {
+&"RESET": SubResource("Animation_cdxjl"),
+&"default": SubResource("Animation_maoh1"),
+&"hit": SubResource("Animation_fbqr0")
+}
+
+[node name="Monster1" type="CharacterBody2D" unique_id=1931066941 groups=["Enemy"]]
 script = ExtResource("1_js34q")
 bullet_node = ExtResource("2_c61ip")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=586734029]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=850585921]
 scale = Vector2(3, 3)
-texture = ExtResource("1_04blv")
+sprite_frames = SubResource("SpriteFrames_maoh1")
+autoplay = "default"
+frame_progress = 0.84007555
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1972043929]
 shape = SubResource("RectangleShape2D_04blv")
@@ -44,5 +128,17 @@ script = ExtResource("7_2enw1")
 
 [node name="2Leaf" type="Node2D" parent="FiniteStateMachine" unique_id=2082962634]
 script = ExtResource("8_2enw1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1771431281]
+libraries/ = SubResource("AnimationLibrary_c84hp")
+autoplay = &"default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=689288789]
+stream = ExtResource("10_maoh1")
+volume_db = 3.0
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=320448820]
+stream = ExtResource("11_fbqr0")
+volume_db = 5.0
 
 [connection signal="timeout" from="Speed" to="." method="_on_speed_timeout"]
