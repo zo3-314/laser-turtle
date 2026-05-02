@@ -1,9 +1,71 @@
 [gd_scene format=3 uid="uid://dlooxcotqg8hm"]
 
-[node name="MainMenu" type="Control" unique_id=375780041]
+[sub_resource type="Theme" id="Theme_rd2v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd2v0"]
+bg_color = Color(0.39911506, 0.79161817, 0.8626837, 1)
+shadow_color = Color(1, 1, 1, 0.6)
+
+[sub_resource type="ImageTexture" id="ImageTexture_rd2v0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7slde"]
+bg_color = Color(0.79061896, 0.64274967, 0.92819715, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amgwv"]
+bg_color = Color(0.9437215, 0.6086756, 0.6385121, 1)
+
+[node name="Main Menu" type="Node2D" unique_id=371575096]
+
+[node name="Button_manager" type="Control" parent="." unique_id=2009542819]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Start" type="Button" parent="Button_manager" unique_id=372724333]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_right = -0.375
+offset_left = 339.0
+offset_top = 83.0
+offset_right = 587.0
+offset_bottom = 195.0
+theme = SubResource("Theme_rd2v0")
+theme_override_colors/font_color = Color(0.33010203, 0.8096213, 0.7791618, 1)
+theme_override_colors/font_hover_color = Color(0.5294118, 0.84705883, 0.6117647, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.5294118, 0.84705883, 0.6117647, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 53
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rd2v0")
+text = "START!"
+icon = SubResource("ImageTexture_rd2v0")
+metadata/_edit_use_anchors_ = true
+
+[node name="Instructions" type="Button" parent="Button_manager" unique_id=1207798218]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 216.0
+offset_right = 572.0
+offset_bottom = 328.0
+theme_override_colors/font_color = Color(0.32941177, 0.80784315, 0.78039217, 1)
+theme_override_colors/font_hover_color = Color(0.5294118, 0.84705883, 0.6117647, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.5294118, 0.84705883, 0.6117647, 1)
+theme_override_font_sizes/font_size = 37
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7slde")
+text = "Instructions"
+
+[node name="Quit" type="Button" parent="Button_manager" unique_id=741270751]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 353.0
+offset_right = 572.0
+offset_bottom = 466.0
+theme_override_colors/font_color = Color(0.32941177, 0.80784315, 0.78039217, 1)
+theme_override_colors/font_hover_color = Color(0.8352941, 0.25882354, 0.2509804, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.8352941, 0.25882354, 0.2509804, 1)
+theme_override_font_sizes/font_size = 53
+theme_override_styles/pressed = SubResource("StyleBoxFlat_amgwv")
+text = "Quit"
